@@ -4,12 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <%= title %>
+        Blocklist
     </title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1><%= title %></h1>
-    Hello EJS!
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Priority</th>
+            <th>Mac</th>
+            <th>Enabled</th>
+        </thead>
+        <tbody>
+           <% blocklist.forEach(element => { %>
+             <tr style="<%= element.enabled ? "":"color: grey;font-style: italic" %>">
+                <td><%= element.id %></td>
+                <td><%= element.priority %></td>
+                <td><%= element.mac %></td>
+                <td><%= element.enabled %></td>
+             </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <br>
+    <form method="post">
+        <label for="priority">Prioritás:</label>
+        <input type="text" name="priority"><br>
+
+        <label for="mac">Mac:</label>
+        <input type="text" name="mac"><br>
+
+        <label for="enabled">Enabled:</label>
+        <input type="checkbox" name="enabled"><br>
+
+        <button type="submit">Fevlgéte</button>
+    </form>
+    <% errors.forEach(element => { %>
+     <p><%= element %></p>
+    <% }) %>
 </body>
 </html>
